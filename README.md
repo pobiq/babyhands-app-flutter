@@ -8,7 +8,7 @@
       <br><br><br>
        <b>프로젝트 기간</b>
        <br>
-      2025.10.31 ~ 2025.11.13
+      2025.04.25 ~ 2025.05.19
     </td>
   </tr>
 </table>
@@ -99,42 +99,7 @@
 
 ## 4. 시스템 아키텍쳐
 
-```mermaid
-flowchart TD
-    subgraph Client["📱 Client"]
-        Flutter["Flutter App\n(Dart)"]
-    end
-
-    subgraph Auth["🔐 소셜 로그인"]
-        Google["Google OAuth"]
-        Kakao["Kakao OAuth"]
-        Naver["Naver OAuth"]
-    end
-
-    subgraph Backend["🖥️ Backend (Node.js)"]
-        Express["Express.js REST API"]
-        JWT["JWT 인증"]
-        Express --> JWT
-    end
-
-    subgraph AI["🤖 AI 서버 (Python)"]
-        FastAPI["FastAPI"]
-        MediaPipe["MediaPipe\n손 랜드마크 추출"]
-        TFLite["TFLite 모델\n수어 분류"]
-        FastAPI --> MediaPipe --> TFLite
-    end
-
-    subgraph DB["🗄️ Database"]
-        MySQL["MySQL"]
-    end
-
-    Flutter -->|"REST API\n(회원/랭킹/학습결과)"| Express
-    Flutter -->|"소셜 로그인"| Google & Kakao & Naver
-    Google & Kakao & Naver -->|"토큰 검증"| Express
-    Flutter -->|"카메라 프레임 전송"| FastAPI
-    FastAPI -->|"수어 예측 결과 반환"| Flutter
-    Express <-->|"데이터 저장/조회"| MySQL
-```
+<img width="1448" height="1086" alt="Image" src="https://github.com/user-attachments/assets/f68b3061-8249-47be-b1f8-c4d1d265884b" />
 
 <br>
 
@@ -162,90 +127,7 @@ flowchart TD
 
 ## 7. ER 다이어그램
 
-```mermaid
-erDiagram
-    tb_member {
-        BIGINT id PK
-        VARCHAR email UK
-        VARCHAR pw
-        VARCHAR nickname UK
-        INT total_score
-        DATETIME created_at
-        DATETIME updated_at
-    }
-
-    tb_sign_language {
-        BIGINT id PK
-        VARCHAR meaning
-        VARCHAR video_path
-    }
-
-    tb_attendance {
-        BIGINT id PK
-        BIGINT member_id FK
-        DATE login_date
-    }
-
-    tb_sl_learn {
-        BIGINT id PK
-        DATE sl_learn_date
-        BIGINT sl_id FK
-        BIGINT member_id FK
-    }
-
-    tb_sl_test {
-        BIGINT id PK
-        DATE sl_test_date
-        VARCHAR choose_answer
-        BIGINT member_id FK
-        BIGINT sl_id FK
-    }
-
-    tb_social_account {
-        BIGINT id PK
-        VARCHAR provider
-        VARCHAR provider_member_id
-        VARCHAR provider_email
-        BIGINT member_id FK
-    }
-
-    tb_feedback {
-        BIGINT id PK
-        BIGINT member_id FK
-        VARCHAR type
-        VARCHAR letter
-        TEXT message
-        TINYINT is_read
-        DATETIME created_at
-    }
-
-    tb_refresh_token_session {
-        CHAR id PK
-        BIGINT member_id FK
-        DATETIME expires_at
-        DATETIME created_at
-    }
-
-    tb_email_verification {
-        BIGINT id PK
-        VARCHAR email
-        VARCHAR purpose
-        VARCHAR code_hash
-        DATETIME expires_at
-        DATETIME verified_at
-        INT attempt_count
-        DATETIME created_at
-    }
-
-    tb_member ||--o{ tb_attendance : "출석"
-    tb_member ||--o{ tb_sl_learn : "학습"
-    tb_member ||--o{ tb_sl_test : "테스트"
-    tb_member ||--o{ tb_social_account : "소셜계정"
-    tb_member ||--o{ tb_feedback : "피드백"
-    tb_member ||--o{ tb_refresh_token_session : "세션"
-    tb_sign_language ||--o{ tb_sl_learn : "학습대상"
-    tb_sign_language ||--o{ tb_sl_test : "테스트대상"
-```
+<img width="1491" height="1055" alt="Image" src="https://github.com/user-attachments/assets/6faec690-8057-4f19-ac71-019bf837e929" />
 
 <br>
 
