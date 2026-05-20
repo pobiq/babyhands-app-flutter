@@ -86,8 +86,9 @@ class _MyPageScreenState extends State<MyPageScreen> {
           ),
           FilledButton(
             onPressed: () {
-              Navigator.of(context).pop();
-              widget.onLogout();
+              Navigator.of(context).pop(); // 다이얼로그 닫기
+              widget.onLogout(); // AuthGate 상태 변경
+              Navigator.of(context).popUntil((route) => route.isFirst); // 스택 정리
             },
             style: FilledButton.styleFrom(
               backgroundColor: AppColors.error,

@@ -118,14 +118,17 @@ class AppBottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.white,
-      elevation: 16,
-      shadowColor: Colors.black26,
+    return Container(
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        border: Border(
+          top: BorderSide(color: Color(0xFFE5E5E5), width: 2),
+        ),
+      ),
       child: SafeArea(
         top: false,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
+          padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -178,7 +181,7 @@ class AppBottomNavBar extends StatelessWidget {
 }
 
 /// 듀오링고 스타일 하단 탭 아이템.
-/// 선택된 항목은 그린 아이콘·라벨 + 연한 그린 원형 배경으로 표시한다.
+/// 선택된 항목은 pill 배경 + 굵은 그린 라벨로 표시한다.
 class _BottomNavItem extends StatelessWidget {
   const _BottomNavItem({
     required this.icon,
@@ -194,35 +197,36 @@ class _BottomNavItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = selected ? AppColors.primary : AppColors.muted;
+    final color = selected ? AppColors.primary : const Color(0xFF9AA0A6);
     return InkWell(
       onTap: onPressed,
-      borderRadius: BorderRadius.circular(12),
+      borderRadius: BorderRadius.circular(16),
+      splashColor: AppColors.primary.withValues(alpha: 0.1),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 6),
+        padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 2),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // 선택 상태: 연한 그린 원형 배경 강조
             AnimatedContainer(
               duration: const Duration(milliseconds: 180),
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 4),
+              curve: Curves.easeOut,
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
               decoration: BoxDecoration(
                 color: selected
-                    ? AppColors.primary.withValues(alpha: 0.12)
+                    ? AppColors.primary.withValues(alpha: 0.15)
                     : Colors.transparent,
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(20),
               ),
               child: Icon(icon, size: 26, color: color),
             ),
-            const SizedBox(height: 2),
+            const SizedBox(height: 3),
             Text(
               label,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 fontSize: 11,
-                fontWeight: selected ? FontWeight.w800 : FontWeight.w600,
+                fontWeight: selected ? FontWeight.w800 : FontWeight.w500,
                 color: color,
               ),
             ),

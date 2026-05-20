@@ -135,26 +135,22 @@
 
 #### 로그인
 
-<img width="1416" height="916" alt="image" src="https://github.com/user-attachments/assets/1cfce9ad-d5fc-43fb-ac0b-32d819e7c2fa" />
+<img width="497" height="902" alt="Image" src="https://github.com/user-attachments/assets/9f5d66b3-5918-4e3b-a69c-11e910631269" />
 
 #### 메인 화면
 
-<img width="1416" height="919" alt="image" src="https://github.com/user-attachments/assets/86c316e5-0cab-49ea-ac2c-6a7f939c4d13" />
+<img width="526" height="903" alt="Image" src="https://github.com/user-attachments/assets/6d25363b-b817-4c70-aae1-2e8a880ba1ba" />
 
 #### 학습하기
 
-<img width="1416" height="917" alt="image" src="https://github.com/user-attachments/assets/b6db8528-067f-459f-b5e2-a78d899076e8" />
+<img width="489" height="884" alt="Image" src="https://github.com/user-attachments/assets/f5f88c07-07e2-40e9-9000-2bc6e900e0ca" />
 
 #### 테스트
 
-<img width="1415" height="917" alt="image" src="https://github.com/user-attachments/assets/a0193834-f22d-4fdf-ae27-b5d8ca43a494" />
+<img width="525" height="909" alt="Image" src="https://github.com/user-attachments/assets/bedc7172-3203-4b36-9bf6-fcd6fe7baa9b" />
 
 #### 랭킹
 
-<img width="1417" height="914" alt="image" src="https://github.com/user-attachments/assets/baf62303-478b-445e-92cc-797ef1f84b02" />
-
-#### 지난 학습 결과
-
-<img width="1417" height="916" alt="image" src="https://github.com/user-attachments/assets/07bb57f7-d1de-4306-9b96-017e149f1954" />
+<img width="524" height="910" alt="Image" src="https://github.com/user-attachments/assets/c65b6463-4787-4bd4-9ce7-434e11822bd7" />
 
 <br>

@@ -329,40 +329,79 @@ class _WelcomePanel extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 10),
-          // 듀오링고 스타일 3D 버튼: 아래쪽에 진한 그린 그림자 효과
-          GestureDetector(
+          _DuoButton(
+            label: '시작',
+            icon: Icons.play_arrow_rounded,
             onTap: onStart,
-            child: Container(
-              decoration: BoxDecoration(
-                color: AppColors.primary,
-                borderRadius: BorderRadius.circular(14),
-                boxShadow: const [
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// 듀오링고 스타일 3D 버튼. 누르면 아래로 4px 이동하며 그림자가 사라진다.
+class _DuoButton extends StatefulWidget {
+  const _DuoButton({
+    required this.label,
+    required this.onTap,
+    this.icon,
+  });
+
+  final String label;
+  final VoidCallback onTap;
+  final IconData? icon;
+
+  @override
+  State<_DuoButton> createState() => _DuoButtonState();
+}
+
+class _DuoButtonState extends State<_DuoButton> {
+  bool _pressed = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTapDown: (_) => setState(() => _pressed = true),
+      onTapUp: (_) {
+        setState(() => _pressed = false);
+        widget.onTap();
+      },
+      onTapCancel: () => setState(() => _pressed = false),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 80),
+        transform: Matrix4.translationValues(0, _pressed ? 4 : 0, 0),
+        decoration: BoxDecoration(
+          color: AppColors.primary,
+          borderRadius: BorderRadius.circular(14),
+          boxShadow: _pressed
+              ? []
+              : const [
                   BoxShadow(
                     color: AppColors.primaryDark,
                     offset: Offset(0, 4),
                     blurRadius: 0,
                   ),
                 ],
-              ),
-              padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
-              child: const Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(Icons.play_arrow_rounded, color: Colors.white, size: 20),
-                  SizedBox(width: 6),
-                  Text(
-                    '시작',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w800,
-                      fontSize: 15,
-                    ),
-                  ),
-                ],
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (widget.icon != null) ...[
+              Icon(widget.icon, color: Colors.white, size: 20),
+              const SizedBox(width: 6),
+            ],
+            Text(
+              widget.label,
+              style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w800,
+                fontSize: 15,
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -751,7 +790,7 @@ class _GuestBanner extends StatelessWidget {
   }
 }
 
-/// 듀오링고 스타일 카드 컨테이너. 그림자로 입체감을 표현한다.
+/// 듀오링고 스타일 카드 컨테이너. 2px 테두리 + 하단 그림자로 입체감을 표현한다.
 class _Surface extends StatelessWidget {
   const _Surface({required this.child});
 
@@ -759,14 +798,21 @@ class _Surface extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: AppColors.card,
-      shape: RoundedRectangleBorder(
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColors.card,
         borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: const Color(0xFFE5E5E5), width: 2),
+        boxShadow: const [
+          BoxShadow(
+            color: Color(0xFFE5E5E5),
+            offset: Offset(0, 4),
+            blurRadius: 0,
+          ),
+        ],
       ),
-      elevation: 3,
-      shadowColor: Colors.black12,
-      child: Padding(padding: const EdgeInsets.all(18), child: child),
+      padding: const EdgeInsets.all(18),
+      child: child,
     );
   }
 }
