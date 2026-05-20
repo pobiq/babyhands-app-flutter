@@ -153,4 +153,8 @@
 
 <img width="524" height="910" alt="Image" src="https://github.com/user-attachments/assets/c65b6463-4787-4bd4-9ce7-434e11822bd7" />
 
+#### 마이 페이지
+
+<img width="524" height="903" alt="Image" src="https://github.com/user-attachments/assets/84766325-6078-4883-8c03-b8860779d324" />
+
 <br>
